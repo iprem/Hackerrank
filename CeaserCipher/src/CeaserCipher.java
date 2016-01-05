@@ -2,8 +2,10 @@ import java.util.Scanner;
 
 public class CeaserCipher {
 
+	private static Scanner sc;
+
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
         int N = sc.nextInt();
         String S = sc.next();
         int K = sc.nextInt();

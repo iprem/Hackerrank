@@ -2,8 +2,10 @@ import java.util.Scanner;
 
 public class MaximizingXOR {
 
+	private static Scanner sc;
+
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
         int L = sc.nextInt();
         int R = sc.nextInt();
         
