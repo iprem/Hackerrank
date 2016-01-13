@@ -15,15 +15,30 @@ public class GameOfThrones {
            
             if(hm.containsKey(ch)){
                 Integer value = hm.get(ch);
-                hm.put(ch, (value++)%2);
+                hm.put(ch, (value+1)%2);
             }
             else
                 hm.put(ch, 1);
         }
-        if(hm.containsValue(1))
-            System.out.println("NO");
-        else
-            System.out.println("YES");
+
+        if((str.length()%2) == 0){
+            if(hm.containsValue(1))
+                System.out.println("NO");
+            else
+                System.out.println("YES");
+        }
+        else {
+            int flag = 0;
+            for(Map.Entry<Integer, Integer> entry: hm.entrySet()){
+                if(entry.getValue()%2 == 1){
+                    flag++;
+                }
+            }
+            if(flag == 1)
+                System.out.println("YES");
+            else
+                System.out.println("NO");
+        }
 
 	}
 
