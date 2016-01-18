@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class PoisonousPlants {
 
@@ -7,7 +8,7 @@ public class PoisonousPlants {
 
 	public static void main(String[] args) {
 		sc = new Scanner(System.in);
-        //Stack<Integer> st = new Stack<Integer>();
+        Stack<Integer> st = new Stack<Integer>();
         LinkedList<Integer> list = new LinkedList<Integer>();
         int n = sc.nextInt();
         int[] ar = new int[n];
