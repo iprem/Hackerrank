@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SherlockAndPairs {
+public class AlmostSorted {
 	private static Scanner sc;
 
 	static boolean isSorted(int[] ar){
