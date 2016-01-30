@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.Scanner;
-
+// Poisonous Plants
+// Level - Difficult
+//
 public class PoisonousPlants {
 
 	private static Scanner sc;
