@@ -31,7 +31,8 @@ public class MissingNumbers {
         Set<?> set = tmap.entrySet();
         Iterator<?> iterator = (Iterator<?>) set.iterator();
         while(iterator.hasNext()){
-            Map.Entry e = (Map.Entry)iterator.next();
+            @SuppressWarnings("rawtypes")
+			Map.Entry e = (Map.Entry)iterator.next();
             int tmp = (int) e.getValue();
             if(tmp < 0)
                 System.out.print(e.getKey()+ " ");
