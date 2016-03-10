@@ -1,97 +1,49 @@
+import java.util.*;
 
-	import java.io.*;
-	import java.util.*;
-
-	class Node{
-	        int data;
-	        Node left;
-	        Node right;
-	        
-	        public Node(){
-	            data = 0;
-	            left = null;
-	            right = null;
-	        }
-	       public Node findNode(Node root, int value){
-	            if(root == null)
-	                return null;
-	           //System.out.println(root.data + " " + value);
-	            if(root.data == value)
-	                return root;
-	            Node tmp1 = findNode(root.right, value);
-	            Node tmp2 = findNode(root.left, value);
-	           //System.out.println("tmp " + tmp.data);
-	           if(tmp1 !=null && tmp1.data == value)
-	                return tmp1;
-	           else if(tmp2 != null && tmp2.data == value)
-	               return tmp2;
-	           else
-	               return(tmp1 == null)? tmp2:tmp1;
-	        }
-	    
-	        public void inorder(Node root){
-	            if(root == null)
-	                return;
-	            inorder(root.left);
-	            System.out.print(root.data + " ");
-	            inorder(root.right);
-	        }
-	    }
-
-	public class SwapNodes {
-
-	    public static void main(String[] args) {
-	        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
-	        Scanner sc = new Scanner(System.in);
-	        int n = sc.nextInt();
-	        Node root = new Node();
-	        root.data = 1;
-	        root.left = null;
-	        root.right = null;
-	        int[] level = new int[n+1];
-	        int l = 1;
-	        for(int i =1; i<=n; i++){
-	            Node tmp = root.findNode(root, i);
-	            //System.out.println(" " + tmp.data);
-	            if(i>=Math.pow(2,l))
-	                l++;
-	            int n1 = sc.nextInt();
-	            int n2 = sc.nextInt();
-	            if(n1 == -1)
-	                tmp.left = null;
-	            else{
-	                Node newnode = new Node();
-	                newnode.data = n1;
-	                tmp.left = newnode;
-	                level[n1] = l;
-	                //System.out.println("Added " + tmp.left.data);
-	            }   
-	            if(n2 == -1)
-	                tmp.right = null;
-	            else{
-	                Node newnode = new Node();
-	                newnode.data = n2;
-	                tmp.right = newnode;
-	                level[n2] = l;
-	                //System.out.println("Added " + tmp.right.data);
-	            }
-	        }
-	        int t = sc.nextInt();
-	        for(int i = 0; i< t; i++){
-	            int lev = sc.nextInt();
-	            Node tmp = root;
-	            for(int j = 1; j< n; j++){
-	                if(level[j] == lev){
-	                    tmp = root.findNode(root,j);
-	                    Node tmp2 = tmp.left;
-	                    tmp.left = tmp.right;
-	                    tmp.right = tmp2;
-	                }
-	            }
-	            root.inorder(root);
-	            System.out.println();
-	        }        
-	    }
-	}
-
+public class SwapNodes {
+    
+    static int[] left;
+    static int[] right;
+    static int[] depth;
+	private static Scanner sc;
+    
+    static void calculateDepth(int cur, int d){
+        depth[cur] = d;
+        if(left[cur] > 0)   calculateDepth(left[cur], d+1);
+        if(right[cur] > 0)  calculateDepth(right[cur], d+1);
+    }
+    
+    static void inorder(int cur){
+        if(left[cur] > 0)   inorder(left[cur]);
+        System.out.print(cur+ " ");
+        if(right[cur] > 0)  inorder(right[cur]);
+    }
+    
+    public static void main(String[] args) {
+        sc = new Scanner(System.in);
+        int totalNodes = sc.nextInt();
+        left = new int[totalNodes+1];
+        right = new int[totalNodes+1];
+        depth = new int[totalNodes+1];
+        for(int i=1; i<=totalNodes; i++){
+            left[i] = sc.nextInt();
+            right[i] = sc.nextInt();
+        }
+        calculateDepth(1,1);
+        int k = sc.nextInt();
+        while(k-- > 0){
+            int d = sc.nextInt();
+            // d[i] is a multiple of k
+            // left child of i becomes right, and vice versa
+            for(int i = 1; i<= totalNodes; i++){
+                if(depth[i] % d == 0){
+                    int temp = left[i];
+                    left[i] = right[i];
+                    right[i] = temp;
+                }
+            }
+            inorder(1);
+            System.out.println();
+        }
+    }
 }
