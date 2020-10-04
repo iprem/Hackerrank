@@ -26,11 +26,14 @@ Sample Output 2 :
 
 
 Below is the implementation of the above approach
-import java.util.*;
+import java.util.PriorityQueue;
 public class Solution {
 
 	public static int kthLargest(int input[], int k) {
 		
+       if(k>input.length)
+          return Integer.MIN_VALUE;
+
         PriorityQueue<Integer> pq= new PriorityQueue<>();
         int x;
 		for( x=0;x<k;x++)
@@ -48,3 +51,6 @@ public class Solution {
            return pq.remove();
 	}
 }
+
+Time complexity of the above code is O(nlogk)
+Space Complexity is O(k)
