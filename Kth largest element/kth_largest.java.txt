@@ -1,4 +1,4 @@
-Kth largest element
+/*Kth largest element
 
 Given an array A of random integers and an integer k, find and return the kth largest element in the array.
 
@@ -26,6 +26,7 @@ Sample Output 2 :
 
 
 Below is the implementation of the above approach
+*/
 import java.util.PriorityQueue;
 public class Solution {
 
